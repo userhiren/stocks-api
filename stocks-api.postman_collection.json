@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "e5a3ea46-63aa-44cd-8c9f-9340df7e0041",
+		"name": "Stocks API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1812499"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Stock Data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Client_Id",
+						"value": "abc123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/stock-data/AA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stock-data",
+						"AA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Missing Stock Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Client_Id",
+						"value": "abc123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"quarter\":\"1\",\n  \"stock\":\"AA\",\n  \"date\":\"1/14/2011\",\n  \"open\":\"$16.71\",\n  \"high\":\"$16.71\",\n  \"low\":\"$15.64\",\n  \"close\":\"$15.97\",\n  \"volume\":\"242963398\",\n  \"percentChangePrice\":\"-4.42849\",\n  \"percentChangeVolumeOverLastWk\":\"1.380223028\",\n  \"previousWeeksVolume\":\"239655616\",\n  \"nextWeeksOpen\":\"$16.19\",\n  \"nextWeeksClose\":\"$15.79\",\n  \"percentChangeNextWeeksPrice\":\"-2.47066\",\n  \"daysToNextDividend\":\"19\",\n  \"percentReturnNextDividend\":\"0.187852\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/stock-data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stock-data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk Load Stock Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Client_Id",
+						"value": "abc123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/hiren/Downloads/stocks-api 2/dow_jones_index.data"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/stock-data/bulk-insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stock-data",
+						"bulk-insert"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
