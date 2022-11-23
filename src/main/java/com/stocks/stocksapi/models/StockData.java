@@ -21,12 +21,13 @@ import java.sql.Date;
 @IdClass(StockDataKey.class)
 public class StockData extends BaseModel {
 
-    @Id
+
     private int quarter;
 
     @Id
     private String stock;
 
+    @Id
     private Date date;
 
     private BigDecimal open;
